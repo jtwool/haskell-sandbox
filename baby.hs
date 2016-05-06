@@ -1,4 +1,5 @@
 -- Following along with the tutorial from LearnYouAHaskell.com
+-- This code is from the "Starting Out" chapter
 
 doubleMe x = x + x
 
