@@ -1,5 +1,8 @@
 -- Chapter 4 book.RealWorldHaskell.org
+-- http://book.realworldhaskell.org/read/functional-programming.html
 -- Line splitting
+import Data.Maybe
+
 splitLines :: String -> [String]
 splitLines [] = []
 splitLines cs = 
@@ -39,5 +42,30 @@ myOtherExample :: [Char] -> Char
 myOtherExample (x:_) = x
 myOtherExample [] = 'Z'
 
---Partial and total functions
+-- Chapter Exercises
+--Ex 1.
+safeHead :: [a] -> Maybe a
+safeHead (x:_) = Just x
+safeHead _ = Nothing
 
+safeTail :: [a] -> Maybe [a]
+safeTail (_:xs) = Just xs
+safeTail _ = Nothing
+
+safeLast :: [a] -> Maybe a
+safeLast [x] = Just x
+safeLast (_:x) = safeLast x
+safeLast _ = Nothing
+
+sInit :: [a] -> Maybe [a]          
+sInit y@(x:xs) = Just (sInit' y)
+    where sInit' [x] = []
+          sInit' (x:xs) = x : sInit' xs
+sInit _ = Nothing
+
+--Ex 2.
+
+
+--Ex 3.
+
+--Ex 4.
