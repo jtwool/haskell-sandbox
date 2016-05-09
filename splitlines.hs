@@ -2,6 +2,7 @@
 -- http://book.realworldhaskell.org/read/functional-programming.html
 -- Line splitting
 import Data.Maybe
+import Data.Char (digitToInt)
 
 splitLines :: String -> [String]
 splitLines [] = []
@@ -63,9 +64,20 @@ sInit y@(x:xs) = Just (sInit' y)
           sInit' (x:xs) = x : sInit' xs
 sInit _ = Nothing
 
---Ex 2.
+--splitWith :: (a->Bool) -> [a] -> [[a]]
+splitWith p s = keep : (splitWith p s')
+    where (keep,s') = break p s
+splitWith p [] = ""
 
+-- Looping
+loop :: Int -> String -> Int 
+asInt xs = loop 0 xs
 
---Ex 3.
+loop i [] = i
+loop i (x:xs) = let i' = i * 10 + digitToInt x
+                in  loop i' xs
 
---Ex 4.
+square :: [Double] -> [Double]
+square (x:xs) = x*x : square xs
+square [] = []
+                
